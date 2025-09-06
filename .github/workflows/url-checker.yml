@@ -21,7 +21,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run URL checker
-        run: python src/main.py
+        run: PYTHONPATH=src python src/main.py
 
       - name: Upload summary as job summary
         if: always()
