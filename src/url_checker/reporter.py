@@ -1,25 +1,27 @@
-import os
-
 class ConsoleReporter:
-    def report(self, file, url, message, ok=True):
+    """Report results to the console."""
+
+    def report(self, file_path, url, message, ok=True):
         if ok:
-            print(f"✅ {url} in {file}: {message}")
+            print(f"✅ {url} in {file_path}: {message}")
         else:
-            print(f"❌ {url} in {file}: {message}")
+            print(f"❌ {url} in {file_path}: {message}")
 
     def finish(self):
         pass
 
 
 class MarkdownReporter:
+    """Write a Markdown summary table for GitHub Actions."""
+
     def __init__(self, path):
         self.path = path
         self.lines = ["| File | URL | Status |", "|------|-----|--------|"]
 
-    def report(self, file, url, message, ok=True):
+    def report(self, file_path, url, message, ok=True):
         status = f"✅ {message}" if ok else f"❌ {message}"
-        self.lines.append(f"| {file} | {url} | {status} |")
+        self.lines.append(f"| {file_path} | {url} | {status} |")
 
     def finish(self):
-        with open(self.path, "w") as f:
-            f.write("\n".join(self.lines))
+        with open(self.path, "w", encoding="utf-8") as file_handler:
+            file_handler.write("\n".join(self.lines))
