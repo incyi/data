@@ -36,12 +36,15 @@ jobs:
       # Run tests with coverage
       - name: Run tests with coverage
         run: |
-          pytest --cov=src --cov-report=xml tests/
+          pytest --cov=src --cov-report=xml:coverage.xml --cov-config=.coveragerc tests/
 
       # SonarCloud scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2.3
         with:
           entryPoint: 'sonar-scanner'
+          args: >
+            -Dsonar.python.version=3.13
+            -Dsonar.python.coverage.reportPaths=coverage.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
