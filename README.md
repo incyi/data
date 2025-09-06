@@ -4,6 +4,8 @@
 
 [![Pylint](https://github.com/incyi/data/actions/workflows/pylint.yml/badge.svg)](https://github.com/incyi/data/actions/workflows/pylint.yml)
 
+[![SonarCloud Analysis](https://github.com/incyi/data/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/incyi/data/actions/workflows/sonarcloud.yml)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=incyi_data&metric=alert_status)](https://sonarcloud.io/dashboard?id=incyi_data)
 
 
