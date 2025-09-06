@@ -1,0 +1,46 @@
+[MASTER]
+# Allow loading of C extensions
+extension-pkg-whitelist=pandas,requests
+
+# Add src folder to Python path
+init-hook='import sys; sys.path.append("src")'
+
+# Files/directories to ignore
+ignore=tests,docs
+ignore-patterns=__init__.py
+
+[MESSAGES CONTROL]
+# Disable some less useful warnings
+disable=
+    missing-docstring,       # allow missing docstrings in small scripts
+    invalid-name,            # allow non-standard variable names
+    too-few-public-methods,  # okay for small classes
+    too-many-arguments       # allow multiple arguments in small functions
+
+[REPORTS]
+# Disable full report, just show messages
+reports=no
+
+[FORMAT]
+# Maximum line length
+max-line-length=120
+
+# Allow long lines for tables in Markdown output
+ignore-long-lines=^\s*(# )?(\|.*\|)$
+
+[DESIGN]
+# Allow larger function/method bodies
+max-parents=7
+max-attributes=10
+max-locals=30
+max-returns=10
+max-branches=15
+max-statements=100
+
+[TYPECHECK]
+# Ignore import errors for optional dependencies
+ignored-modules=pandas,requests
+
+[LOGGING]
+# Allow use of print (for console output in your scripts)
+logging-modules=logging
