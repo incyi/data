@@ -1,4 +1,4 @@
-name: Check URLs
+name: Check CSV URLs
 
 on:
   push:
@@ -18,73 +18,11 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: pip install pandas requests
+        run: pip install -r requirements.txt
 
-      - name: Validate URLs in airports.csv and list.csv
-        run: |
-          python << 'EOF'
-          import pandas as pd
-          import requests
-          import os
+      - name: Run URL checker
+        run: python src/main.py
 
-          summary_path = os.environ["GITHUB_STEP_SUMMARY"]
-
-          files = ["airports.csv", "list.csv"]
-          errors = []
-
-          # Prepare markdown table
-          with open(summary_path, "w") as summary:
-              summary.write("| File | URL | Status |\n")
-              summary.write("|------|-----|--------|\n")
-
-              for f in files:
-                  if not os.path.exists(f):
-                      msg = f"File {f} not found"
-                      errors.append(msg)
-                      print("❌", msg)
-                      summary.write(f"| {f} | - | ❌ File not found |\n")
-                      continue
-
-                  try:
-                      df = pd.read_csv(f)
-                  except Exception as e:
-                      msg = f"Could not read {f}: {e}"
-                      errors.append(msg)
-                      print("❌", msg)
-                      summary.write(f"| {f} | - | ❌ Could not read |\n")
-                      continue
-
-                  if "url" not in df.columns:
-                      msg = f"No 'url' column found in {f}"
-                      errors.append(msg)
-                      print("❌", msg)
-                      summary.write(f"| {f} | - | ❌ No 'url' column |\n")
-                      continue
-
-                  for url in df["url"].dropna().astype(str):
-                      try:
-                          # Try HEAD first
-                          r = requests.head(url, timeout=10, allow_redirects=True)
-                          if r.status_code >= 400:
-                              # fallback to GET
-                              r = requests.get(url, timeout=10, allow_redirects=True)
-                          if r.status_code >= 400:
-                              msg = f"{url} in {f} returned {r.status_code}"
-                              errors.append(msg)
-                              print("❌", msg)
-                              summary.write(f"| {f} | {url} | ❌ {r.status_code} |\n")
-                          else:
-                              print(f"✅ {url} in {f} OK")
-                              summary.write(f"| {f} | {url} | ✅ OK |\n")
-                      except Exception as e:
-                          msg = f"{url} in {f} failed: {e}"
-                          errors.append(msg)
-                          print("❌", msg)
-                          summary.write(f"| {f} | {url} | ❌ Failed: {e} |\n")
-
-          if errors:
-              print("\n❌ Some URLs are invalid.")
-              raise SystemExit(1)
-          else:
-              print("\n✅ All URLs are valid.")
-          EOF
+      - name: Upload summary as job summary
+        if: always()
+        run: cat src/summary.md >> $GITHUB_STEP_SUMMARY
