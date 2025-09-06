@@ -2,3 +2,5 @@
 /src/url_checker/__pycache__
 src/summary.md
 /tests/__pycache__
+coverage.xml
+.coverage

@@ -3,3 +3,4 @@ pylint
 black
 flake8
 pytest
+pytest-cov
