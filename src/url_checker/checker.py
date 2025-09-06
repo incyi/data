@@ -12,6 +12,7 @@ def check_files(files, reporters=None):
     for file_path in files:
         errors.extend(check_file(file_path, reporters))
 
+    # Notify reporters that processing is done
     for reporter in reporters:
         reporter.finish()
 
@@ -19,7 +20,7 @@ def check_files(files, reporters=None):
 
 
 def check_file(file_path, reporters):
-    """Check a single CSV file."""
+    """Check a single CSV file for valid URLs."""
     errors = []
 
     if not os.path.exists(file_path):
@@ -67,6 +68,7 @@ def check_url(url, file_path, reporters):
         else:
             for reporter in reporters:
                 reporter.report(file_path, url, "OK", ok=True)
+
     except RequestException as e:
         msg = f"{url} failed: {e}"
         errors.append(msg)

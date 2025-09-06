@@ -8,6 +8,7 @@ class ConsoleReporter:
             print(f"❌ {url} in {file_path}: {message}")
 
     def finish(self):
+        # Empty method because ConsoleReporter prints immediately to console
         pass
 
 
