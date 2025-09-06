@@ -24,6 +24,7 @@ def test_missing_url_column(tmp_path):
     assert any("No 'url' column found" in e for e in errors)
 
 def test_valid_url(tmp_path):
+    """Test that a valid URL passes without errors."""
     df = pd.DataFrame({"url": ["https://example.com"]})
     file = tmp_path / "urls.csv"
     df.to_csv(file, index=False)

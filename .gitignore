@@ -1,6 +1,7 @@
-
-/src/url_checker/__pycache__
-src/summary.md
-/tests/__pycache__
-coverage.xml
 .coverage
+coverage.xml
+src/__pycache__/
+src/summary.md
+src/url_checker/__pycache__
+tests/__pycache__
+
