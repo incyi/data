@@ -25,4 +25,16 @@ jobs:
 
       - name: Upload summary as job summary
         if: always()
-        run: cat src/summary.md >> $GITHUB_STEP_SUMMARY
+        run: |
+          if [ -f reports/summary.md ]; then
+            cat reports/summary.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No summary.md generated." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload summary as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: url-check-summary
+          path: reports/summary.md

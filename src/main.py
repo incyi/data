@@ -9,7 +9,9 @@ FILES = [
     Path("list.csv"),
 ]
 
-SUMMARY_FILE = Path("src/summary.md")
+REPORTS_DIR = Path("reports")
+REPORTS_DIR.mkdir(exist_ok=True)  # make sure folder exists
+SUMMARY_FILE = REPORTS_DIR / "summary.md"
 
 def main(files=None, reporters=None):
     files = files or FILES
