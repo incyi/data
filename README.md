@@ -9,7 +9,7 @@
 
 ## Overview
 
-**data** is a repository dedicated to the collection, organization, and maintenance of various CSV datasets. These datasets are intended for research, automation, data analysis, and integration with other projects maintained by [@incyi](https://github.com/incyi).
+**data** is a repository dedicated to the collection, organization, and maintenance of various CSV datasets. These datasets are intended for research, automation, data analysis, and integration with machine learning pipelines. By leveraging techniques such as data preprocessing, transformation, and validation, this repository ensures high-quality datasets for diverse applications.
 
 ## Repository Structure
 
