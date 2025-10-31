@@ -8,3 +8,4 @@ tests/__pycache__
 shuffled_airports-nl.csv
 shuffled_airports-de.csv
 shuffled_list.csv
+reports/summary.md

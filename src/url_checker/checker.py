@@ -9,6 +9,8 @@ import socket
 from datetime import datetime, timezone
 from typing import List
 from urllib.parse import urlparse
+import requests
+from requests.exceptions import RequestException
 
 # ----------------------
 # Third-party
@@ -108,7 +110,7 @@ def check_url(url: str, file_path: str, reporters=None) -> List[str]:
                     if not_after < datetime.now(timezone.utc):
                         msg = f"{url} SSL certificate expired on {not_after}"
                         report_error(file_path, url, msg, errors, reporters)
-    except ssl.SSLError as e:
+    except (ssl.SSLError, ConnectionResetError) as e:
         msg = f"{url} SSL error: {e}"
         report_error(file_path, url, msg, errors, reporters)
     except socket.timeout:
@@ -116,6 +118,9 @@ def check_url(url: str, file_path: str, reporters=None) -> List[str]:
         report_error(file_path, url, msg, errors, reporters)
     except socket.gaierror as e:
         msg = f"{url} SSL check failed (hostname error): {e}"
+        report_error(file_path, url, msg, errors, reporters)
+    except Exception as e:
+        msg = f"{url} SSL check failed with unexpected error: {e}"
         report_error(file_path, url, msg, errors, reporters)
 
     return errors
