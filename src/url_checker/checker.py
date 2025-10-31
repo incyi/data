@@ -1,20 +1,13 @@
 # src/url_checker/checker.py
 
-# ----------------------
 # Standard library
-# ----------------------
 import os
 import ssl
 import socket
 from datetime import datetime, timezone
 from typing import List
 from urllib.parse import urlparse
-import requests
-from requests.exceptions import RequestException
-
-# ----------------------
 # Third-party
-# ----------------------
 import pandas as pd
 import requests
 from requests.exceptions import RequestException
