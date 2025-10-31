@@ -6,7 +6,7 @@
 import os
 import ssl
 import socket
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List
 from urllib.parse import urlparse
 
@@ -104,7 +104,8 @@ def check_url(url: str, file_path: str, reporters=None) -> List[str]:
                 not_after_str = cert.get("notAfter")
                 if not_after_str:
                     not_after = datetime.strptime(not_after_str, "%b %d %H:%M:%S %Y %Z")
-                    if not_after < datetime.utcnow():
+                    not_after = not_after.replace(tzinfo=timezone.utc)
+                    if not_after < datetime.now(timezone.utc):
                         msg = f"{url} SSL certificate expired on {not_after}"
                         report_error(file_path, url, msg, errors, reporters)
     except ssl.SSLError as e:

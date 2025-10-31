@@ -5,7 +5,8 @@ from src.url_checker.checker import check_files, check_file
 from src.url_checker.reporter import ConsoleReporter, MarkdownReporter
 
 FILES = [
-    Path("airports.csv"),
+    Path("airports-nl.csv"),
+    Path("airports-de.csv"),
     Path("list.csv"),
 ]
 

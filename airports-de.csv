@@ -1,1 +1,2 @@
-country,city,airport code,airport name
+url,name
+https://remote.airport-nuernberg.de/,Airport Nuernberg

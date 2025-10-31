@@ -1,1 +1,21 @@
-country,city,airport code,airport name
+url,name
+https://twente-airport.nl/,Airport Twente
+https://ehal.nl,Ameland Airport Ballum
+https://bonaireinternationalairport.com/,Bonaire
+https://breda-airport.eu,Breda International Airport
+https://denhelderairport.nl/,Den Helder Airport
+https://eindhovenairport.nl,Eindhoven Airport
+https://groningenairport.nl,Groningen Airport Eelde
+https://kempenairport.nl/,Kempen Airport
+https://lelystadairport.nl,Lelystad Airport
+https://maa.nl/,Maastricht Aachen Airport
+https://rotterdamthehagueairport.nl,Rotterdam The Hague Airport
+https://schiphol.nl,Schiphol
+https://teuge-airport.nl/,Teuge International Airport
+https://texelairport.nl,Texel International Airport
+https://ehdr.aero,Vliegveld Drachten
+https://ehhv.nl,Vliegveld Hilversum
+https://ehho.nl,Vliegveld Hoogeveen
+https://vliegveldzeeland.nl,Vliegveld Midden-Zeeland
+https://vliegveldmiddenmeer.nl,Vliegveld Middenmeer
+https://ehst.nl,Vliegveld Stadskanaal
