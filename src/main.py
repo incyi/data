@@ -6,8 +6,8 @@ from src.url_checker.reporter import ConsoleReporter, MarkdownReporter
 
 FILES = [
     Path("airports-nl.csv"),
-    Path("airports-de.csv"),
-    Path("list.csv"),
+#    Path("airports-de.csv"),
+#    Path("list.csv"),
 ]
 
 REPORTS_DIR = Path("reports")
